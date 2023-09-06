@@ -1,0 +1,66 @@
+﻿@using Crops.Models
+@model List<CropChangeRequest>
+
+@{
+    ViewData["Title"] = "Crop Change Requests";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Form to submit a new crop change request -->
+<h2>Submit Crop Change Request</h2>
+<form asp-action="SubmitChangeRequest" method="post">
+    <div>
+        <label for="Title">Title:</label>
+        <input type="text" id="Title" name="Title" required />
+    </div>
+    <div>
+        <label for="ParcelId">Parcel ID:</label>
+        <input type="text" id="ParcelId" name="ParcelId" required />
+    </div>
+    <div>
+        <label for="ParcelName">Parcel Name:</label>
+        <input type="text" id="ParcelName" name="ParcelName" required />
+    </div>
+    <div>
+        <label for="NewMainCrop">New Main Crop:</label>
+        <input type="text" id="NewMainCrop" name="NewMainCrop" required />
+    </div>
+    <div>
+        <label for="NewCatchCrop">New Catch Crop:</label>
+        <input type="text" id="NewCatchCrop" name="NewCatchCrop" required />
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<!-- Grid/Table to view the requests -->
+<h2>View Requests</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Modification Date</th>
+            <th>Parcel ID</th>
+            <th>Parcel Name</th>
+            <th>New Main Crop</th>
+            <th>New Catch Crop</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Id</td>
+                <td>@request.Title</td>
+                <td>@request.ModificationDate.ToShortDateString()</td>
+                <td>@request.ParcelId</td>
+                <td>@request.ParcelName</td>
+                <td>@request.NewMainCrop</td>
+                <td>@request.NewCatchCrop</td>
+            </tr>
+        }
+    </tbody>
+</table>
